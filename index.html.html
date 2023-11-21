@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulus (Turunan)</title>
+    <style>
+      :root {
+        --main: #1855a0;
+        --bg: #081c35;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        outline: none;
+        border: none;
+        text-decoration: none;
+      }
+      body {
+        background-color: var(--bg);
+        color: #fff;
+      }
+      /* Menu Navigasi */
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.4rem 2%;
+        background-color: rgba(14, 37, 64, 0.9);
+        border-bottom: 1px solid var(--main);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+      }
+
+      .navbar .navbar-nav a {
+        color: #fff;
+        display: inline-block;
+        font-size: 1rem;
+        margin: 0 2rem;
+      }
+
+      .navbar .navbar-nav a:hover {
+        color: var(--main);
+      }
+
+      .navbar .navbar-nav a::after {
+        content: "";
+        display: block;
+        padding-bottom: 0.5rem;
+        border-bottom: 0.1rem solid var(--main);
+        transform: scaleX(0);
+        transition: 0.2s linear;
+      }
+
+      .navbar .navbar-nav a:hover::after {
+        transform: scaleX(1);
+      }
+
+      /* Halaman */
+      .start {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        background-image: url("https://www.wallsauce.com/images/hero/cat/1357/645/maths-hero.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+      }
+
+      .start::after {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 20%;
+        bottom: 0;
+        background: linear-gradient(
+          0deg,
+          rgba(8, 28, 53, 1) 10%,
+          rgba(255, 255, 255, 0) 50%
+        );
+      }
+
+      .start .content {
+        padding: 1.4rem 4%;
+        max-width: 60rem;
+        background-color: rgba(255, 255, 255, 00.1rem);
+        backdrop-filter: blur(5px);
+        border-radius: 10px;
+        border: 1px solid white;
+        position: relative;
+        left: 15%;
+      }
+
+      .start .content h1 {
+        font-size: 5em;
+        color: #fff;
+        line-height: 1.1;
+        text-align: center;
+      }
+
+      .start .content p {
+        size: 1.6rem;
+        color: #fff;
+        font-size: 1rem;
+        margin-top: 1rem;
+        line-height: 1.5rem;
+        font-weight: 300;
+        text-align: center;
+      }
+
+      .materi {
+        padding: 6rem 7% 1.4rem;
+        min-height: 100vh;
+        display: flex;
+        position: relative;
+      }
+
+      .materi h2 {
+        text-align: center;
+        font-size: 2.6rem;
+        margin-bottom: 3rem;
+      }
+
+      .materi .row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 50px;
+      }
+
+      .materi .row .gambar-materi {
+        float: 1 1 35rem;
+      }
+
+      .materi .row .gambar-materi img {
+        width: 100%;
+        border-radius: 25px;
+      }
+
+      .materi .row .content {
+        float: 1 1 35rem;
+        padding: 0 1rem;
+      }
+
+      .materi .row .content h3 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+      }
+
+      .materi .row .content p {
+        margin-bottom: 0.8rem;
+        font-size: 1.2rem;
+        font-weight: 200;
+        line-height: 1.6;
+      }
+
+      .hitung {
+        background-image: url(Gambar/hitungbg2.jpg);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+      }
+
+      .hitung::after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 20%;
+        background: linear-gradient(
+          180deg,
+          rgba(8, 28, 53, 1) 10%,
+          rgba(255, 255, 255, 0) 50%
+        );
+      }
+
+      .hitung::before {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 20%;
+        background: linear-gradient(
+          0deg,
+          rgba(8, 28, 53, 1) 10%,
+          rgba(255, 255, 255, 0) 50%
+        );
+      }
+
+      .hitung .hitung-container {
+        align-items: center;
+        justify-content: center;
+        padding: 1.4rem 5%;
+        max-width: 90rem;
+        background-color: rgba(255, 255, 255, 00.1rem);
+        backdrop-filter: blur(5px);
+        border-radius: 10px;
+        border: 1px solid white;
+        position: relative;
+        left: 1%;
+      }
+
+      .hitung .hitung-container h1 {
+        text-align: center;
+        font-size: 2.6rem;
+        margin-bottom: 0.1rem;
+        padding: 1rem;
+      }
+
+      .hitung .hitung-container p {
+        text-align: center;
+        margin-bottom: 0.8rem;
+        font-size: 1.2rem;
+        font-weight: 200;
+        line-height: 1.6;
+      }
+
+      .hitung .masukkan {
+        justify-content: center;
+        width: 50em;
+        display: block;
+        text-align: center;
+        line-height: 4rem;
+      }
+
+      .hitung .masukkan input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .hitung .masukkan button {
+        background-color: var(--main);
+        color: white;
+        padding: 15px 30px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .hitung .masukkan button:hover {
+        background-color: var(--bg);
+        color: #ccc;
+      }
+
+      .hitung .masukkan button:active {
+        top: 2em;
+      }
+
+      .kelompok {
+        justify-content: center;
+        align-items: center;
+        padding: 0rem 7% 1.4rem;
+        min-height: 100vh;
+        position: relative;
+        display: block;
+      }
+
+      .kelompok .head {
+        padding: 6rem 7% 1.4rem;
+        position: relative;
+      }
+
+      .kelompok .head h1 {
+        text-align: center;
+        font-size: 2.6rem;
+        margin-bottom: 5px;
+      }
+
+      .kelompok .head p {
+        text-align: center;
+        margin-bottom: 0.8rem;
+        font-size: 1.2rem;
+        font-weight: 200;
+        line-height: 1.6;
+      }
+
+      .kelompok .row {
+        display: flex;
+      }
+
+      .kelompok .row .identitas {
+        display: flex;
+      }
+      .profil {
+        width: 25vh;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .kolom {
+        float: left;
+        width: 100%;
+        padding: 0em 5em;
+      }
+
+      .iden-data {
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: 200;
+        line-height: 1.6;
+        padding-top: 1rem;
+      }
+    </style>
+    <script src="calculator.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.0.0/math.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      type="text/javascript"
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/mml-chtml.js"
+    ></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navbar-nav">
+        <a href="#home">Home</a>
+        <a href="#materi">Penjelasan</a>
+        <a href="#hitung">Hitung</a>
+        <a href="#kelompok">Kelompok</a>
+      </div>
+    </nav>
+    <!--Navbar end-->
+    <section class="start" id="home">
+      <main class="content">
+        <h1>Selamat Datang</h1>
+        <p>
+          Program ini dibuat dalam rangka memenuhi tugas project UAS matakuliah
+          Kalkulus1. Program ini merupakan sebuah kalkulator sederhana dengan
+          input berupa fungsi aljabar dan output berupa turunannya.
+        </p>
+      </main>
+    </section>
+    <!--Main Section End-->
+    <section class="materi" id="materi">
+      <div class="materi-container">
+        <h2>Penjelasan Materi</h2>
+        <div class="row">
+          <div class="gambar-materi">
+            <img src="Gambar/calculus.jpg" alt="https://shorturl.at/ilvzI" />
+          </div>
+          <div class="content">
+            <h3>Apa Itu Turunan Fungsi Aljabar?</h3>
+            <p>
+              Turunan Fungsi Aljabar merupakan salah satu pengaplikasian limit
+              di dalam matematika. Turunan fungsi aljabar ini dapat dicari
+              dengan melakukan pengalian pangkat dengan koefisien lalu
+              mengurangi pangkatnya dengan 1 tingkat turunan fungsi tidak
+              terbatas pada satu tingkat saja, tetapi juga bisa dua tingkat,
+              tiga tingkat, dan seterusnya. Konsep turunan setiap tingkatnya
+              juga sama. Hanya saja, fungsi yang diturunkan berbeda-beda karena
+              mengacu pada hasil turunan sebelumnya.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--Materi Section End-->
+    <section class="hitung" id="hitung">
+      <div class="hitung-container">
+        <h1>Mencari Turunan Fungsi Aljabar</h1>
+        <p>Masukkan persamaan dalam bentuk x^n, contoh: [2x^3]</p>
+        <div class="masukkan">
+          <input
+            type="text"
+            id="inputFunction"
+            placeholder="Masukkan fungsi aljabar"
+          />
+          <button onclick="calculateDerivative()">Hitung Turunan</button>
+          <p id="result"></p>
+        </div>
+      </div>
+    </section>
+    <!--Hitung End-->
+    <section class="kelompok" id="kelompok">
+      <div class="head">
+        <h1>Kelompok 7</h1>
+        <p>Dengan Anggota di bawah ini :</p>
+      </div>
+      <div class="row">
+        <div class="identitas">
+          <div class="kolom">
+            <figure>
+              <img class="profil" src="Gambar/Bakti2.png" alt="profile pict" />
+              <div class="iden-data">
+                <p>Bakti Dwi Pamungkas</p>
+                <p>(237006059)</p>
+              </div>
+            </figure>
+          </div>
+          <div class="kolom">
+            <figure>
+              <img class="profil" src="Gambar/Diva2.png" alt="profile pict" />
+              <div class="iden-data">
+                <p>Diva Marshelano Ardentinnova Suhartanto</p>
+                <p>(237006041)</p>
+              </div>
+            </figure>
+          </div>
+          <div class="kolom">
+            <figure>
+              <img class="profil" src="Gambar/Hafiz2.png" alt="profile pict" />
+              <div class="iden-data">
+                <p>Hafiz Syafiq Ahmad Fauzi</p>
+                <p>(237006050)</p>
+              </div>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      function calculateDerivative() {
+        const input = document.getElementById("inputFunction").value;
+
+        try {
+          const derivative = math.derivative(input, "x").toString();
+          document.getElementById("result").textContent =
+            "Turunan fungsi: " + `\[${derivative}\]`;
+        } catch (error) {
+          document.getElementById("result").textContent =
+            "Error: " + error.message;
+        }
+      }
+
+      document
+        .getElementById("inputFunction")
+        .addEventListener("keyup", function (event) {
+          if (event.key === "Enter") {
+            calculateDerivative();
+          }
+        });
+    </script>
+  </body>
+</html>
